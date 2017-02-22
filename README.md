@@ -1,5 +1,6 @@
 ### Known issues
-Issue with ng2-translate and ionic-storage
+Issue with ng2-translate 
+ionic-storage : es5 build is failing - https://github.com/driftyco/ionic-storage/issues/18
 
 
 ### Fuse-box + Ionic2
