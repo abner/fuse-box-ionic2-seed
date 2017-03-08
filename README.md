@@ -1,7 +1,9 @@
 ### Known issues
-Issue with ng2-translate 
+Issue with ng2-translate (resolved with latest version)
 
 ionic-storage : es5 build is failing - https://github.com/driftyco/ionic-storage/issues/18
+
+You can use localforageSQLStorage instead
 
 
 ### Fuse-box + Ionic2
