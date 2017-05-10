@@ -1,30 +1,59 @@
-const fsbx = require('fuse-box');
+const {FuseBox, CSSPlugin, CSSResourcePlugin, SassPlugin, JSONPlugin, HTMLPlugin, TypeScriptHelpers} = require("fuse-box");
 
-const fuseBox = fsbx.FuseBox.init({
-  cache: false,
-  homeDir: 'src/',
-  sourceMap: {
-    bundleReference: 'app.js.map',
-    outFile: './www/app.js.map',
-  },
-  outFile: './www/app.js',
+const fuse = FuseBox.init({
+  homeDir: "src",
+  output: "www/$name.js",
+  sourceMaps: true,
   plugins: [
     [
-      fsbx.SassPlugin({ outputStyle: 'compressed' }),
-      fsbx.CSSPlugin()
+      SassPlugin({outputStyle: "compressed"}),
+      CSSPlugin()
     ],
     [
-      fsbx.CSSResourcePlugin({
+      CSSResourcePlugin({
         inline: true
-      }), fsbx.CSSPlugin()
+      }), CSSPlugin()
     ],
-
-    fsbx.TypeScriptHelpers(),
-    fsbx.JSONPlugin(),
-    fsbx.HTMLPlugin({ useDefault: false })
+    TypeScriptHelpers(),
+    JSONPlugin(),
+    HTMLPlugin({useDefault: false})
   ]
 });
 
-fuseBox.devServer('>main.ts', {
-  port: 8100
-});
+fuse.dev({port: 8100});
+
+fuse.bundle("app")
+  .watch("client/**") // watch only client related code
+  .hmr()
+  .instructions("> main.ts");
+
+fuse.run();
+
+//const fuseBox = fsbx.FuseBox.init({
+//  cache: false,
+//  homeDir: "src/",
+//  sourceMap: {
+//    bundleReference: "app.js.map",
+//    outFile: "./www/app.js.map"
+//  },
+//  outFile: "./www/app.js",
+//  plugins: [
+//    [
+//      fsbx.SassPlugin({outputStyle: "compressed"}),
+//      fsbx.CSSPlugin()
+//    ],
+//    [
+//      fsbx.CSSResourcePlugin({
+//        inline: true
+//      }), fsbx.CSSPlugin()
+//    ],
+//
+//    fsbx.TypeScriptHelpers(),
+//    fsbx.JSONPlugin(),
+//    fsbx.HTMLPlugin({useDefault: false})
+//  ]
+//});
+//
+//fuseBox.devServer(">main.ts", {
+//  port: 8100
+//});

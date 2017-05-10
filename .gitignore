@@ -1,6 +1,7 @@
 node_modules/
 .fusebox/
 .vscode/
+.idea/
 *~
 *.sw[mnpcod]
 *.log
