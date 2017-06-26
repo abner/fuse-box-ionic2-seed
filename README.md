@@ -1,19 +1,14 @@
-### Known issues
-Issue with ng2-translate (resolved with latest version)
+### Fuse-box + Ionic3
+This is an Ionic 3 tab-based app that uses Fuse-Box. 
 
-ionic-storage : es5 build is failing - https://github.com/driftyco/ionic-storage/issues/18
+### Features
 
-You can use localforageSQLStorage instead
-
-
-### Fuse-box + Ionic2
-This is an ionic2 app that uses fusebox. it also loads in an external module as a string.
-
+* The code compiles into separated vendor and application bundles
+* The `WebIndexPlugin` helps inject the generated bundles into customizable `index.html`
+* The seed code is a tabs-based application with three tabs `Home`, `About` and `Contents`
+* Comfortable development with the `Fuse-Box` super speed builds
 
 #### Setup & run 
 * `npm install`
 * `npm start`
 
-#### External module
-
-In the app.component we load 2 external modules from an array and trigger a simple method using FuseBox
