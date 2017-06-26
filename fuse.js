@@ -1,11 +1,15 @@
-const {FuseBox, CSSPlugin, CSSResourcePlugin, SassPlugin, JSONPlugin, HTMLPlugin, TypeScriptHelpers} = require("fuse-box");
+const {FuseBox, CSSPlugin, CSSResourcePlugin, SassPlugin, JSONPlugin, HTMLPlugin, TypeScriptHelpers,
+WebIndexPlugin} = require("fuse-box");
 
 const fuse = FuseBox.init({
-  homeDir: "src",
+  homeDir: "src/",
   output: "www/$name.js",
   sourceMaps: true,
   plugins: [
-    [
+    WebIndexPlugin({
+        title: 'Ionic App',
+        template: 'src/index.html',
+    }), [
       SassPlugin({outputStyle: "compressed"}),
       CSSPlugin()
     ],
@@ -17,14 +21,16 @@ const fuse = FuseBox.init({
     TypeScriptHelpers(),
     JSONPlugin(),
     HTMLPlugin({useDefault: false})
-  ]
+  ],
+  standalone : true
 });
 
 fuse.dev({port: 8100});
 
-fuse.bundle("app")
-  .watch("client/**") // watch only client related code
-  .hmr()
-  .instructions("> main.ts");
+fuse.bundle('vendor').instructions(' ~ main.ts');
+fuse.bundle('app')
+    .instructions(' !> [main.ts]')
+    .watch()
+    .hmr();
 
 fuse.run();
