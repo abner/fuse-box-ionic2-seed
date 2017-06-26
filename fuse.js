@@ -5,6 +5,7 @@ const fuse = FuseBox.init({
   homeDir: "src/",
   output: "www/$name.js",
   sourceMaps: true,
+  standalone : false,
   plugins: [
     WebIndexPlugin({
         title: 'Ionic App',
@@ -30,7 +31,7 @@ fuse.dev({port: 8100});
 fuse.bundle('vendor').instructions(' ~ main.ts');
 fuse.bundle('app')
     .instructions(' !> [main.ts]')
-    .watch()
-    .hmr();
+    .hmr()
+    .watch();
 
 fuse.run();
