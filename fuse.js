@@ -1,10 +1,14 @@
-const { FuseBox, CSSPlugin, CSSResourcePlugin, SassPlugin, JSONPlugin, HTMLPlugin, TypeScriptHelpers, WebIndexPlugin } = require("fuse-box");
+const { FuseBox, CSSPlugin, CSSResourcePlugin, SassPlugin, JSONPlugin, HTMLPlugin, TypeScriptHelpers, WebIndexPlugin, RawPlugin } = require("fuse-box");
+
+const { Ng2TemplatePlugin } = require('ng2-fused');
 
 const fuse = FuseBox.init({
   homeDir: "src/",
   output: "www/$name.js",
   sourceMaps: true,
   plugins: [
+    Ng2TemplatePlugin(),
+    ['*.html', RawPlugin()],
     WebIndexPlugin({
       title: 'Ionic App',
       template: 'src/index.html',

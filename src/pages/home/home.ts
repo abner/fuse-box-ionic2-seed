@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'page-home',
-    template: require('./home.html')
+    templateUrl: './home.html'
 })
 export class HomePage {
 

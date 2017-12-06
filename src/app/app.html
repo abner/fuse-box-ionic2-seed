@@ -1,1 +1,22 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-split-pane #splitPane when="(min-width: 970px)">
+  <ion-menu #menu [content]="content" type="push" [persistent]="true">
+
+
+    <ion-content>
+      <ion-list>
+        <button  ion-item *ngFor="let p of pages" (click)="openPage(p)">
+          {{p.title}}
+        </button>
+      </ion-list>
+      <button ion-item primary (click)="voltar()">Voltar</button>
+      <pre>{{paginaAtual$ | async | json}}</pre>
+      <pre>{{retornouDe$ | async | json}}</pre>
+      <pre>{{sideNav$ | async | json}}</pre>
+    </ion-content>
+
+  </ion-menu>
+
+  <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+  <ion-nav [root]="'HomePage'" main #content swipeBackEnabled="false" ></ion-nav>
+
+  </ion-split-pane>

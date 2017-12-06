@@ -5,7 +5,7 @@ import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
 
 @Component({
-  template: require('./tabs.html')
+  templateUrl:'./tabs.html'
 })
 export class TabsPage {
 
